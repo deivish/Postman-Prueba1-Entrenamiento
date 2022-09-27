@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "200b894b-4bd8-4bba-8aec-3fe57c03c08c",
+		"name": "Prueba1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener Peliculas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"The End Game\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Titulo de la pelicula con id 'd030c270-7c7f-11ec-8953-3967f4971427' coincide con el nombre\", \r",
+							"function ()\r",
+							" {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var peli=jsonData.find(x => x.id == \r",
+							"    \"d030c270-7c7f-11ec-8953-3967f4971427\")\r",
+							"    pm.expect(peli.title).to.equal(\"Face/Off\");\r",
+							"});\r",
+							"\r",
+							"var schema = {\r",
+							"    \"items\": {\r",
+							"        \"type\": \"boolean\"\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"var schema = \r",
+							"{\r",
+							" \"items\": \r",
+							" {\r",
+							"     \"type\": \"object\",\r",
+							"     \"properties\":\r",
+							"     {\r",
+							"         \"title\":{\"type\":\"string\"},\r",
+							"         \"year\":{\"type\":\"number\"},\r",
+							"         \"genre\":{\"type\":\"string\"},\r",
+							"         \"director\":{\"type\":\"string\"},\r",
+							"         \"rate\":{\"type\":\"number\"},\r",
+							"         \"id\":{\"type\":\"string\"}\r",
+							"     }\r",
+							" }\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate schema\", () => {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"El codigo de respuesta es 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{peliculas}}",
+					"host": [
+						"{{Url_Base}}{{peliculas}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Pelicula por id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El odigo de espuesta es 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{peliculas}}b6538030-7c7b-11ec-8953-3967f4971427",
+					"host": [
+						"{{Url_Base}}{{peliculas}}b6538030-7c7b-11ec-8953-3967f4971427"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener pelicula por id no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El codigo de respuesta es 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{peliculas}}77dfdsfss343423",
+					"host": [
+						"{{Url_Base}}{{peliculas}}77dfdsfss343423"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registro Usuario y crear variable Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var response=pm.response.json();\r",
+							"var tokenobtenido=response.accessToken\r",
+							"console.log(tokenobtenido)\r",
+							"pm.environment.set(\"token\", tokenobtenido);\r",
+							"\r",
+							"pm.test(\"El codigo de respuesta es 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"var schema = \r",
+							"{\r",
+							" \"items\": \r",
+							" {\r",
+							"     \"type\": \"object\",\r",
+							"     \"properties\":\r",
+							"     {\r",
+							"         \"status\":{\"type\":\"number\"},\r",
+							"         \"accessToken\":{\"type\":\"string\"}\r",
+							"     }\r",
+							" }\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate schema\", () => {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"email\": \"soyyo@gmail.com\",\r\n    \"password\": \"mysupersecret123\" \r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url_Base}}{{registro}}",
+					"host": [
+						"{{Url_Base}}{{registro}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar Pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El codigo de respuesta es 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Blanca Nieves\",\r\n        \"year\": 2006,\r\n        \"genre\": \"Fantacia\",\r\n        \"director\": \"Andriw\",\r\n        \"rate\": 9\r\n}   ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url_Base}}{{peliculas}}",
+					"host": [
+						"{{Url_Base}}{{peliculas}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar pelicula y crear variable Id_ultima_peli",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var response=pm.response.json();\r",
+							"var idpeli=response.movieId;\r",
+							"console.log(idpeli);\r",
+							"pm.environment.set(\"id_ultima_peli\", idpeli);\r",
+							"\r",
+							"pm.test(\"El codigo de respuesta es 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"los pitufos\",\r\n        \"year\": 2012,\r\n        \"genre\": \"Fantacia\",\r\n        \"director\": \"Steben\",\r\n        \"rate\": 11\r\n}    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url_Base}}{{peliculas}}",
+					"host": [
+						"{{Url_Base}}{{peliculas}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualización de ultimapelicula creada",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El codigo de respuesta es 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"los pitufos\",\r\n        \"year\": 2009,\r\n        \"genre\": \"Fantacia y Aventura\",\r\n        \"director\": \"Cosmos\",\r\n        \"rate\": 21\r\n}      ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url_Base}}{{peliculas}}{{id_ultima_peli}}",
+					"host": [
+						"{{Url_Base}}{{peliculas}}{{id_ultima_peli}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminación de  ultima pelicula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El codigo de respuesta es 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{peliculas}}{{id_ultima_peli}}",
+					"host": [
+						"{{Url_Base}}{{peliculas}}{{id_ultima_peli}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

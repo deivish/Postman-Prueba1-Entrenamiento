@@ -1,0 +1,290 @@
+{
+	"id": "1cbbc6d2-c1d0-491d-815f-2ced207315aa",
+	"name": "Prueba1",
+	"timestamp": "2022-09-27T19:54:26.029Z",
+	"collection_id": "0-200b894b-4bd8-4bba-8aec-3fe57c03c08c",
+	"folder_id": 0,
+	"environment_id": "c21b91ce-160e-4990-8752-3f6335e97696",
+	"totalPass": 12,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "a1a34b7b-cb8a-412b-91f3-0b723dec919f",
+			"name": "Obtener Peliculas",
+			"url": "http://localhost:3002/api/movies/",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Body matches string": true,
+				"Titulo de la pelicula con id 'd030c270-7c7f-11ec-8953-3967f4971427' coincide con el nombre": true,
+				"Validate schema": true,
+				"El codigo de respuesta es 200": true
+			},
+			"testPassFailCounts": {
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Titulo de la pelicula con id 'd030c270-7c7f-11ec-8953-3967f4971427' coincide con el nombre": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate schema": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El codigo de respuesta es 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Body matches string": true,
+					"Titulo de la pelicula con id 'd030c270-7c7f-11ec-8953-3967f4971427' coincide con el nombre": true,
+					"Validate schema": true,
+					"El codigo de respuesta es 200": true
+				}
+			]
+		},
+		{
+			"id": "eedd8bf7-22a5-4fdb-a6d6-80e243e7b469",
+			"name": "Obtener Pelicula por id",
+			"url": "http://localhost:3002/api/movies/b6538030-7c7b-11ec-8953-3967f4971427",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"El odigo de espuesta es 200": true
+			},
+			"testPassFailCounts": {
+				"El odigo de espuesta es 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"El odigo de espuesta es 200": true
+				}
+			]
+		},
+		{
+			"id": "b993af94-b15c-4b61-a93e-0ff0aadf761d",
+			"name": "Obtener pelicula por id no existente",
+			"url": "http://localhost:3002/api/movies/77dfdsfss343423",
+			"time": 5,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"El codigo de respuesta es 404": true
+			},
+			"testPassFailCounts": {
+				"El codigo de respuesta es 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"El codigo de respuesta es 404": true
+				}
+			]
+		},
+		{
+			"id": "e4f359b9-7cfb-41ac-b1d9-e8204bf6e711",
+			"name": "Registro Usuario y crear variable Token",
+			"url": "http://localhost:3002/api/register/",
+			"time": 4,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"El codigo de respuesta es 201": true,
+				"Validate schema": true
+			},
+			"testPassFailCounts": {
+				"El codigo de respuesta es 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate schema": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"El codigo de respuesta es 201": true,
+					"Validate schema": true
+				}
+			]
+		},
+		{
+			"id": "65edc088-d51e-49f9-b457-124e2f8870fa",
+			"name": "Agregar Pelicula",
+			"url": "http://localhost:3002/api/movies/",
+			"time": 6,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"El codigo de respuesta es 201": true
+			},
+			"testPassFailCounts": {
+				"El codigo de respuesta es 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"El codigo de respuesta es 201": true
+				}
+			]
+		},
+		{
+			"id": "416bff70-a807-4f5c-9c9f-47010ccf0c54",
+			"name": "Agregar pelicula y crear variable Id_ultima_peli",
+			"url": "http://localhost:3002/api/movies/",
+			"time": 22,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"El codigo de respuesta es 201": true
+			},
+			"testPassFailCounts": {
+				"El codigo de respuesta es 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"El codigo de respuesta es 201": true
+				}
+			]
+		},
+		{
+			"id": "7bd15029-dc63-4ff4-8f97-f0d420cdb090",
+			"name": "Actualización de ultimapelicula creada",
+			"url": "http://localhost:3002/api/movies/3127a4f0-3e9e-11ed-ab53-cb8bddda1dc3",
+			"time": 8,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"El codigo de respuesta es 204": true
+			},
+			"testPassFailCounts": {
+				"El codigo de respuesta es 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"El codigo de respuesta es 204": true
+				}
+			]
+		},
+		{
+			"id": "577b8507-9259-446a-9c81-2004ae08f583",
+			"name": "Eliminación de  ultima pelicula",
+			"url": "http://localhost:3002/api/movies/3127a4f0-3e9e-11ed-ab53-cb8bddda1dc3",
+			"time": 12,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"El codigo de respuesta es 204": true
+			},
+			"testPassFailCounts": {
+				"El codigo de respuesta es 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"El codigo de respuesta es 204": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 78,
+	"collection": {
+		"requests": [
+			{
+				"id": "a1a34b7b-cb8a-412b-91f3-0b723dec919f",
+				"method": "GET"
+			},
+			{
+				"id": "eedd8bf7-22a5-4fdb-a6d6-80e243e7b469",
+				"method": "GET"
+			},
+			{
+				"id": "b993af94-b15c-4b61-a93e-0ff0aadf761d",
+				"method": "GET"
+			},
+			{
+				"id": "e4f359b9-7cfb-41ac-b1d9-e8204bf6e711",
+				"method": "POST"
+			},
+			{
+				"id": "65edc088-d51e-49f9-b457-124e2f8870fa",
+				"method": "POST"
+			},
+			{
+				"id": "416bff70-a807-4f5c-9c9f-47010ccf0c54",
+				"method": "POST"
+			},
+			{
+				"id": "7bd15029-dc63-4ff4-8f97-f0d420cdb090",
+				"method": "PUT"
+			},
+			{
+				"id": "577b8507-9259-446a-9c81-2004ae08f583",
+				"method": "DELETE"
+			}
+		]
+	}
+}
